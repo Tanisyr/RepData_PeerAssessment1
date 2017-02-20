@@ -73,7 +73,7 @@ ___
 1. Here once again I will be using the features of `data.table` to calculate the average across days
 and then use `ggplot` to make a nice line graph.
 
-```{r activity_plot, fig.width=10, fig.height=6}
+```{r activity_plot}
 steps_by_interval <- data[,.(steps=mean(steps, na.rm=T)), by = interval]
 ggplot(data = steps_by_interval, aes(x=interval, y=steps, group=1)) + 
     geom_line(color = "#AA55AA", size=1.5)
@@ -172,7 +172,7 @@ day_types = factor(c("weekday","weekend"))
 the day type and interval. The `facet_grid` function in the `ggplot1` library is fantastic
 for this.
 
-```{r full_dataset_activity, fig.width=10, fig.height=6}
+```{r full_dataset_activity}
 full_data <- full_data[,day_type:=as.factor(ifelse(day_of_week != "Sunday" & day_of_week != "Saturday", "weekday", "weekend"))]
 steps_by_interval <- full_data[,.(steps=mean(steps)), by = .(interval,day_type)]
 

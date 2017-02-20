@@ -57,14 +57,16 @@ but instead of just outputting the values, I am going to assign them and use a m
 table to display the results:
 
 ```{r}
+daily <- data[,.(mean = mean(steps, na.rm=T), median = median(steps,na.rm=T)), by = date]
 smry <- summary(total_steps$steps)
-daily_step_median <- smry[3]
-daily_step_mean <- smry[4]
+total_step_median <- smry[3]
+total_step_mean <- smry[4]
+daily[order(date)]
 ```
 
-|  Mean steps per day  |  Median steps per day |
+|  Mean steps overall  |  Median steps overall |
 |:--------------------:|:---------------------:|
-|`r daily_step_mean`   |`r daily_step_median`  |
+|`r total_step_mean`   |`r total_step_median`  |
 
 ___
 
@@ -148,14 +150,16 @@ As you can see the histogram of the complete data doesn't look significantly dif
 with missing data. However the mean and median show a slight difference:
 
 ```{r}
+daily <- full_data[,.(mean = mean(steps, na.rm=T), median = median(steps,na.rm=T)), by = date]
 smry <- summary(total_steps$steps)
-daily_step_median <- smry[3]
-daily_step_mean <- smry[4]
+total_step_median <- smry[3]
+total_step_mean <- smry[4]
+daily[order(date)]
 ```
 
-|  Mean steps per day  |  Median steps per day |
+|  Mean steps overall  |  Median steps overall |
 |:--------------------:|:---------------------:|
-|`r daily_step_mean`   |`r daily_step_median`  |
+|`r total_step_mean`   |`r total_step_median`  |
 
 ___
 
